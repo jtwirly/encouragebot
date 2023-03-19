@@ -23,5 +23,15 @@
     "eslint-config-next": "12.2.2",
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.5"
+  },
+  "eslintConfig": {
+    "extends": [
+      "next",
+      "next/core-web-vitals",
+      "plugin:react/recommended"
+    ],
+    "rules": {
+      "react/prop-types": "off"
+    }
   }
 }
