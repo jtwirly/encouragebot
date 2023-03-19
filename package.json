@@ -1,6 +1,8 @@
 {
   "name": "advice-ai",
   "version": "0.1.0",
+  "engines": {
+    "node": "18.x",
   "private": true,
   "scripts": {
     "dev": "next dev",
