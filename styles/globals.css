@@ -1,3 +1,74 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  gap: 1rem;
+  padding: 1rem;
+  height: 100vh;
+}
+
+.main {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 1rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 6vw;
+}
+
+.description {
+  font-size: 3vw;
+}
+
+.input {
+  font-size: 3vw;
+}
+
+.btn {
+  font-size: 3vw;
+}
+
+.logo {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-rows: auto 1fr auto;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    height: auto;
+  }
+
+  .title {
+    font-size: 4vw;
+  }
+
+  .description {
+    font-size: 2vw;
+  }
+
+  .input {
+    font-size: 2vw;
+  }
+
+  .btn {
+    font-size: 2vw;
+  }
+}
