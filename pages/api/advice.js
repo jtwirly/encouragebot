@@ -41,7 +41,7 @@ const getAdvice = async (req, res) => {
         console.log(`Received a request with query: ${JSON.stringify(req.query)}`);
         const completion = await openai.createCompletion({
             model: "text-davinci-002",
-            prompt: `Dear AIbby, give me some polite and family-friendly advice on ${req.query.prompt}. Thank you in advance. Tone: polite, family-friendly`,
+            prompt: `Dear AIbby, give me some advice on ${req.query.prompt}. Thank you in advance. Tone: polite, friendly`,
             max_tokens: 200,
             n: 1,
             stop: null,
