@@ -49,7 +49,7 @@ const Home = () => {
         <footer className="text-center text-gray-500 text-sm">
           <p>&copy; 2023 EncourageBot. All rights reserved.</p>
           <p>
-            Disclaimer for EncourageBot, an AI-Powered Encourager: Please read this disclaimer carefully before using the EncourageBot (&quot;the App&quot;. By accessing or using the App, you agree to be bound by the terms and conditions stated herein. If you do not agree with these terms and conditions, please refrain from using the App.
+            Disclaimer for EncourageBot, an AI-Powered Encourager: Please read this disclaimer carefully before using the EncourageBot (&quot;the App&quot;). By accessing or using the App, you agree to be bound by the terms and conditions stated herein. If you do not agree with these terms and conditions, please refrain from using the App.
 
 Purpose and Limitations
 EncourageBot is an AI-powered application designed to provide users with verbal encouragement on various topics. The App is intended for entertainment and informational purposes only and should not be relied upon as a substitute for professional advice or support. The App does not provide medical, psychological, legal, or any other professional advice or services.
