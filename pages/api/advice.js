@@ -22,7 +22,7 @@ const getAdvice = async (req, res) => {
     try {
         const completion = await openai.createCompletion({
             model: "text-davinci-003",
-            prompt: `Give me some advice as if you were a kind school teacher on ${req.query.prompt}`,
+            prompt: `Give me some advice as if you were an advice columnist on ${req.query.prompt}`,
             max_tokens: 200,
         });
         res.status(200).json({ text: completion.data.choices[0].text });
