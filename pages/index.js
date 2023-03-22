@@ -22,43 +22,53 @@ const Home = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-50">
       <Head>
-        <title>Dear Aibby</title>
-        <meta name="description" content="App that gives advice using OpenAI GPT-3" />
+        <title>EncourageBot</title>
+        <meta name="description" content="App that gives encouragement using OpenAI GPT-3" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="w-full max-w-xl mx-4">
-        <h1 className="text-4xl font-bold text-center text-gray-800 mb-4">Dear Aibby</h1>
-        <p className="text-lg text-center text-gray-700 mb-6">Get some friendly advice from our AI-powered advice columnist.</p>
+        <h1 className="text-4xl font-bold text-center text-gray-800 mb-4">EncourageBot</h1>
+        <p className="text-lg text-center text-gray-700 mb-6">Get some friendly encouragement from our AI-powered cheerleader.</p>
         <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6 mb-6">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             className="border-2 border-violet-800 py-2 px-4 rounded-lg text-lg w-full focus:outline-none focus:border-violet-700"
-            placeholder="Type your question here..."
+            placeholder="What would you like to receive encouragement about?"
           />
         <input className="self-end bg-violet-800 text-white py-2 px-5 mt-4 rounded-md hover:bg-violet-700" type="submit" value="Submit" />
         </form>
         {loading && <div>Loading...</div>}
         {answer && (
           <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-            <h2 className="text-2xl font-bold mb-4 text-gray-800">Answer:</h2>
+            <h2 className="text-2xl font-bold mb-4 text-gray-800">Encouragement:</h2>
             <div className="text-lg text-gray-700">{answer}</div>
           </div>
         )}
         <footer className="text-center text-gray-500 text-sm">
-          <p>&copy; 2023 Dear Aibby. All rights reserved.</p>
+          <p>&copy; 2023 EncourageBot. All rights reserved.</p>
           <p>
-            Disclaimer for DearAibby, an AI-Powered Advice Columnist:
-            <br />
-            DearAibby is an AI-powered advice columnist designed to offer insights and suggestions based on information provided by users. The advice provided by DearAibby is intended to be informative and helpful, but should not be considered a substitute for professional advice.
-            <br />
-            DearAibby is not a licensed therapist or medical professional, and the advice provided is not intended to diagnose, treat, cure or prevent any disease, disorder or condition. The information provided by DearAibby is based on the input provided by users, and therefore, may not be applicable or appropriate for every individual.
-            <br />
-            It is important to remember that DearAibby is a machine learning model, and while it has been trained on a large dataset of advice, it is not capable of fully understanding the nuances of human emotion and behavior. Therefore, the advice provided should be taken with a grain of salt, and users are encouraged to seek additional professional advice when necessary.
-            <br />
-            By using DearAibby, you acknowledge that the advice provided is not a substitute for professional advice and you agree to release DearAibby and its creators from any liability resulting from your use of the service.
-          </p>
+            Disclaimer for EncourageBot, an AI-Powered Encourager: Please read this disclaimer carefully before using the EncourageBot (&quot;the App&quot;. By accessing or using the App, you agree to be bound by the terms and conditions stated herein. If you do not agree with these terms and conditions, please refrain from using the App.
+
+Purpose and Limitations
+EncourageBot is an AI-powered application designed to provide users with verbal encouragement on various topics. The App is intended for entertainment and informational purposes only and should not be relied upon as a substitute for professional advice or support. The App does not provide medical, psychological, legal, or any other professional advice or services.
+
+No Guarantee of Accuracy or Effectiveness
+While we strive to provide helpful and relevant encouragement, we cannot guarantee the accuracy, effectiveness, or suitability of the encouragement provided by the App. Users are encouraged to use their own discretion and judgment when applying any advice or suggestions provided by the App to their specific circumstances.
+
+No Liability
+The developers, creators, and operators of EncourageBot shall not be held liable for any direct, indirect, incidental, special, consequential, or punitive damages resulting from the use of, or inability to use, the App. This includes, but is not limited to, any negative consequences or dissatisfaction resulting from the encouragement provided by the App.
+
+Intellectual Property
+All content, features, and functionality within the App, including but not limited to text, graphics, logos, and code, are the property of the App&apos;s creators and are protected by copyright, trademark, and other intellectual property laws.
+
+Changes to the Disclaimer
+We reserve the right to modify this disclaimer at any time, effective upon posting of an updated version on the App. Your continued use of the App after any such changes shall constitute your consent to such changes.
+
+Governing Law
+This disclaimer shall be governed by and construed in accordance with the laws of the jurisdiction in which the App is operated.
+         </p>
         </footer>
     </div>
   </div>
