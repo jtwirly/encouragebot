@@ -1,10 +1,9 @@
 /* eslint-disable react/no-unknown-property */
 
-import Head from 'next/head'
+import Head from 'next/head';
 import { useState } from 'react';
 
 const Home = () => {
-
   const [input, setInput] = useState('');
   const [answer, setAnswer] = useState('');
   const [loading, setLoading] = useState(false);
@@ -12,118 +11,58 @@ const Home = () => {
   const handleSubmit = async (e) => {
     setLoading(true);
     e.preventDefault();
+    console.log(`Submitting request with input: ${input}`);
     const res = await fetch(`/api/advice?prompt=${input}`);
     const data = await res.json();
+    console.log(`Received response: ${data.text}`);
     setAnswer(data.text);
     setLoading(false);
-  }
+  };
 
   return (
-    <div className='flex justify-center'>
+    <div className="flex justify-center items-center min-h-screen bg-gray-50">
       <Head>
-        <title>Dear AIbby</title>
+        <title>Dear Aibby</title>
         <meta name="description" content="App that gives advice using OpenAI GPT-3" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main>
-        <h1 className="title">
-          Welcome to <a href="https://dearaibby.herokuapp.com/">Dear AIbby!</a>
-        </h1>
-
-        <p className="description">
-          Get some friendly advice from our AI-powered advice columnist.
-        </p>
-      </main>
-
-      <div className='flex pt-40 p-4 flex-col max-w-lg w-full h-screen gap-6'>
-        <h1 className='text-2xl'>Dear AIbby, give me some advice on...</h1>
-
-        <form onSubmit={handleSubmit} className='flex justify-center flex-col gap-5'>
+      <div className="w-full max-w-xl mx-4">
+        <h1 className="text-4xl font-bold text-center text-gray-800 mb-4">Dear Aibby</h1>
+        <p className="text-lg text-center text-gray-700 mb-6">Get some friendly advice from our AI-powered advice columnist.</p>
+        <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6 mb-6">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className='border-2 border-violet-800 py-3 px-5 rounded-xl text-2xl'
+            className="border-2 border-violet-800 py-2 px-4 rounded-lg text-lg w-full focus:outline-none focus:border-violet-700"
+            placeholder="Type your question here..."
           />
-          <input
-            className="self-end bg-violet-800 text-white py-2 px-5 rounded-md hover:bg-violet-700"
-            type="submit"
-            value="Submit"
-          />
+        <input className="self-end bg-violet-800 text-white py-2 px-5 mt-4 rounded-md hover:bg-violet-700" type="submit" value="Submit" />
         </form>
         {loading && <div>Loading...</div>}
         {answer && (
-          <>
-            <h2>Answer:</h2>
-            <div>{answer}</div>
-            <footer>
-              <p className="text-center">
-                &copy; 2023 Dear AIbby. All rights reserved.
-              </p>
-            </footer>
-          </>
+          <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <h2 className="text-2xl font-bold mb-4 text-gray-800">Answer:</h2>
+            <div className="text-lg text-gray-700">{answer}</div>
+          </div>
         )}
-      </div>
-
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-          text-align: center;
-        }
-
-        .text-center {
-          text-align: center;
-        }
-      `}</style>
+        <footer className="text-center text-gray-500 text-sm">
+          <p>&copy; 2023 Dear Aibby. All rights reserved.</p>
+          <p>
+            Disclaimer for DearAibby, an AI-Powered Advice Columnist:
+            <br />
+            DearAibby is an AI-powered advice columnist designed to offer insights and suggestions based on information provided by users. The advice provided by DearAibby is intended to be informative and helpful, but should not be considered a substitute for professional advice.
+            <br />
+            DearAibby is not a licensed therapist or medical professional, and the advice provided is not intended to diagnose, treat, cure or prevent any disease, disorder or condition. The information provided by DearAibby is based on the input provided by users, and therefore, may not be applicable or appropriate for every individual.
+            <br />
+            It is important to remember that DearAibby is a machine learning model, and while it has been trained on a large dataset of advice, it is not capable of fully understanding the nuances of human emotion and behavior. Therefore, the advice provided should be taken with a grain of salt, and users are encouraged to seek additional professional advice when necessary.
+            <br />
+            By using DearAibby, you acknowledge that the advice provided is not a substitute for professional advice and you agree to release DearAibby and its creators from any liability resulting from your use of the service.
+          </p>
+        </footer>
+    </div>
   </div>
-
-);
+  );
 };
 
 export default Home;
