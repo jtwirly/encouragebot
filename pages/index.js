@@ -45,9 +45,9 @@ const Home = () => {
         </form>
         {loading && <div>Loading...</div>}
         {answer && (
-          <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-            <h2 className="text-2xl font-bold mb-4 text-gray-800">Encouragement:</h2>
-            <div className="border-4 py-4 py-x text-lg text-gray-700">{answer}</div>
+          <div className="box-border gap-8 py-282 px-813 bg-[#2638f5] shadow-lg p-6 mt-6 mb-6">
+            <h2 className="text-2xl font-bold mb-4 text-white">Encouragement:</h2>
+            <div className="text-lg text-white">{answer}</div>
           </div>
         )}
         <footer className="text-center text-gray-500 text-sm mt-10">
