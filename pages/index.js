@@ -20,33 +20,37 @@ const Home = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-50">
+    <div className="flex justify-center items-center min-h-screen bg-[#d0f2f6]">
       <Head>
         <title>EncourageBot</title>
         <meta name="description" content="App that gives encouragement using OpenAI GPT-3" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="w-full max-w-xl mx-4">
-        <h1 className="text-4xl font-bold text-center text-gray-800 mb-4">EncourageBot</h1>
-        <p className="text-lg text-center text-gray-700 mb-6">Get some friendly encouragement from our AI-powered cheerleader.</p>
-        <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-6 mb-6">
+      <div className="w-full max-w-[1400px] mx-4">
+        {/* <h1 className="text-4xl font-bold  text-gray-800 mb-4">EncourageBot</h1> */}
+        <div className='flex items-end gap-8'>
+          <img src="/logo.png" alt="EncourageBot Logo" className="block h-[100px] w-full max-w-[600px]" />
+          <img src="/image-7@2x.png" alt="" className="block h-[200px] w-full max-w-[200px]" />
+        </div>
+        <p className="text-3xl text-[#2638f5] mt-4 mb-6 font-semibold">Get some friendly encouragement from our AI-powered cheerleader.</p>
+        <form onSubmit={handleSubmit} className="">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            className="border-2 border-violet-800 py-2 px-4 rounded-lg text-lg w-full focus:outline-none focus:border-violet-700"
+            className="border-2 py-4 px-4 text-2xl w-full focus:outline-none ring-1 ring-transparent focus:ring-violet-700 rounded-[400px]"
             placeholder="What would you like to receive encouragement about?"
           />
-        <input className="self-end bg-violet-800 text-white py-2 px-5 mt-4 rounded-md hover:bg-violet-700" type="submit" value="Submit" />
+        <input className="self-end bg-[#ff5989] text-white py-3 px-8 mt-4 text-2xl"   type="submit" value="Submit" />
         </form>
         {loading && <div>Loading...</div>}
         {answer && (
           <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
             <h2 className="text-2xl font-bold mb-4 text-gray-800">Encouragement:</h2>
-            <div className="text-lg text-gray-700">{answer}</div>
+            <div className="border-4 py-4 py-x text-lg text-gray-700">{answer}</div>
           </div>
         )}
-        <footer className="text-center text-gray-500 text-sm">
+        <footer className="text-center text-gray-500 text-sm mt-10">
           <p>&copy; 2023 EncourageBot. All rights reserved.</p>
           <p>
             Disclaimer for EncourageBot, an AI-Powered Encourager: Please read this disclaimer carefully before using the EncourageBot (&quot;the App&quot;). By accessing or using the App, you agree to be bound by the terms and conditions stated herein. If you do not agree with these terms and conditions, please refrain from using the App.

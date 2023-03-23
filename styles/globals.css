@@ -2,49 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 100vh;
-  padding: 1rem;
-}
-
-.main {
-  display: grid;
-  grid-template-rows: auto auto;
-  gap: 1rem;
-  justify-items: center;
-  align-items: center;
-}
-
-.form {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 1rem;
-  justify-items: center;
-  align-items: center;
-}
-
-.title {
-  font-size: 6vw;
-}
-
-.description {
-  font-size: 3vw;
-}
-
-.input {
-  font-size: 3vw;
-}
-
-.btn {
-  font-size: 3vw;
-}
-
 .logo {
-  max-width: 100%;
+  width: 150px; /* You can adjust this value to your desired size */
   height: auto;
 }
 
@@ -55,20 +14,70 @@
     padding: 0.5rem;
     height: auto;
   }
+}
 
-  .title {
-    font-size: 4vw;
-  }
+@import url("https://fonts.googleapis.com/css2?family=Mukta:wght@800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600&display=swap");
+body {
+  margin: 0;
+  line-height: normal;
+}
+:root {
+  /* fonts */
+  --font-istok-web: "Istok Web";
+  --font-libre-franklin: "Libre Franklin";
+  --font-mukta: Mukta;
 
-  .description {
-    font-size: 2vw;
-  }
+  /* font sizes */
+  --font-size-5xl: 24px;
+  --font-size-13xl: 32px;
+  --font-size-77xl: 96px;
 
-  .input {
-    font-size: 2vw;
-  }
+  /* Colors */
+  --color-darkslategray: #454545;
+  --color-white: #fff;
+  --color-mediumblue-100: #2638f5;
+}
 
-  .btn {
-    font-size: 2vw;
-  }
+/* Styles for the updated code */
+.getSomeFriendly {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.whatWouldYou {
+  font-size: 18px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+input[type="text"] {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+/* 
+input[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--color-mediumblue-100);
+  color: var(--color-white);
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  transition: background-color 0.3s ease;
+} */
+
+/* input[type="submit"]:hover {
+  background-color: #1a2ae3;
+} */
+
+.yourEncouragement {
+  font-size: 24px;
+  margin-bottom: 1rem;
+  text-align: center;
 }
