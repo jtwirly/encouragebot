@@ -14,21 +14,23 @@ const Home = () => {
     console.log(`Submitting request with input: ${input}`);
   
     try {
-      // Check if the input is appropriate using the NLP API route
-      const nlpRes = await fetch('/api/nlp', {
+      // Check if the input is appropriate using the moderation API route
+      const moderationRes = await fetch('/api/moderateMessage', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: input }),
+        body: JSON.stringify({ message: input }),
       });
-      const nlpData = await nlpRes.json();
+      const moderationData = await moderationRes.json();
   
-      if (nlpData.output === 'appropriate') {
+      if (moderationData.blocked !== '') {
+        setAnswer('We encourage you to ask a different question.');
+      } else if (moderationData.flagged) {
+        setAnswer('We encourage you to ask a different question.');
+      } else {
         const res = await fetch(`/api/advice?prompt=${input}`);
         const data = await res.json();
         console.log(`Received response: ${data.text}`);
         setAnswer(data.text);
-      } else {
-        setAnswer('We encourage you to ask a different question.');
       }
     } catch (error) {
       console.error('Error in handleSubmit:', error);
@@ -66,6 +68,8 @@ const Home = () => {
           <div className="box-border gap-8 py-282 px-813 bg-[#2638f5] shadow-lg p-6 mt-6 mb-6">
             <h2 className="text-2xl font-bold mb-4 text-white">Encouragement:</h2>
             <div className="text-2xl text-white">{answer}</div>
+         
+
           </div>
         )}
         <footer className="text-center text-gray-500 text-sm mt-10">
