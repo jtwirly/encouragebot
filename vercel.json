@@ -1,0 +1,7 @@
+{
+    "rewrites": [
+      { "source": "/api/advice", "destination": "/api/moderation" },
+      { "source": "/api/nlp", "destination": "/api/nlp" }
+    ]
+  }
+  
