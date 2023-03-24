@@ -1,50 +1,38 @@
 import { useState } from 'react';
 
-export default function ModerationPage() {
-  const [inputText, setInputText] = useState('');
-  const [moderationResults, setModerationResults] = useState(null);
+export default async function handler(req, res) {
+  const { input } = req.body;
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const response = await fetch('/api/moderation', {
+  try {
+    const response = await fetch('https://api.openai.com/v1/engines/content-filter-alpha-2/inputs', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
       },
-      body: JSON.stringify({ input: inputText }),
+      body: JSON.stringify({
+        prompts: [`Is the following text appropriate for a professional setting?`],
+        examples: [
+          [`This is a great product!`],
+          [`Your work is amazing.`],
+          [`I hate this so much.`],
+          [`You are terrible at your job.`],
+          [`I'm feeling really down today.`],
+        ],
+        query: input,
+        max_examples: 3,
+        search_model: 'ada',
+        model: 'content-filter-alpha-2',
+        temperature: 0,
+      }),
     });
-    
     const data = await response.json();
-    setModerationResults(data.results[0]);
-  };
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <textarea value={inputText} onChange={(e) => setInputText(e.target.value)} />
-        <button type="submit">Check moderation</button>
-      </form>
-
-      {moderationResults && (
-        <div>
-          <p>Flagged: {moderationResults.flagged ? 'true' : 'false'}</p>
-          <ul>
-            {Object.entries(moderationResults.categories).map(([category, isViolated]) => (
-              <li key={category}>
-                {category}: {isViolated ? 'true' : 'false'}
-              </li>
-            ))}
-          </ul>
-          <ul>
-            {Object.entries(moderationResults.category_scores).map(([category, score]) => (
-              <li key={category}>
-                {category}: {score}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
-  );
+    res.status(200).json({
+      results: data.data,
+    });
+  } catch (error) {
+    console.error('Error in moderation:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 }
