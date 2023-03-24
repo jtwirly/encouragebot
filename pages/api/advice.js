@@ -22,10 +22,16 @@ const getAdvice = async (req, res) => {
     try {
         const completion = await openai.createCompletion({
             model: "text-davinci-003",
-            prompt: `Give me some encouragement as if you were a kind, supportive and ethical friend on ${req.query.prompt}`,
+            prompt: `As a kind, supportive and ethical friend, please provide encouragement on the following topic: ${req.query.prompt}. If the topic is unclear, please ask for clarification.`,
             max_tokens: 200,
-        });
-        res.status(200).json({ text: completion.data.choices[0].text });
+            temperature: 0.8,
+        });        
+
+        // Clean up the text output
+        const text = completion.data.choices[0].text.trim();
+        const cleanedText = text.replace(/^[.,\s]+|[.,\s]+$/g, '');
+
+        res.status(200).json({ text: cleanedText });
     } catch (error) {
         if (error.response) {
             res.status(error.response.status).send(error.response.data);

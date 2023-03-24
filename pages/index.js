@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 
+import Image from 'next/image';
 import Head from 'next/head';
 import { useState } from 'react';
 
@@ -14,23 +15,21 @@ const Home = () => {
     console.log(`Submitting request with input: ${input}`);
   
     try {
-      // Check if the input is appropriate using the moderation API route
-      const moderationRes = await fetch('/api/moderation', {
+      // Check if the input is appropriate using the NLP API route
+      const nlpRes = await fetch('/api/nlp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: input }),
+        body: JSON.stringify({ text: input }),
       });
-      const moderationData = await moderationRes.json();
+      const nlpData = await nlpRes.json();
   
-      if (moderationData.blocked !== '') {
-        setAnswer('We encourage you to ask a different question.');
-      } else if (moderationData.flagged) {
-        setAnswer('Your input has been flagged as potentially inappropriate. Please ask a different question.');
-      } else {
+      if (nlpData.output === 'appropriate') {
         const res = await fetch(`/api/advice?prompt=${input}`);
         const data = await res.json();
-        console.log(`Received response: ${data.text}`);
+        console.log(`Received response: ${input}`);
         setAnswer(data.text);
+      } else {
+        setAnswer('We encourage you to ask a different question.');
       }
     } catch (error) {
       console.error('Error in handleSubmit:', error);
@@ -68,8 +67,6 @@ const Home = () => {
           <div className="box-border gap-8 py-282 px-813 bg-[#2638f5] shadow-lg p-6 mt-6 mb-6">
             <h2 className="text-2xl font-bold mb-4 text-white">Encouragement:</h2>
             <div className="text-2xl text-white">{answer}</div>
-         
-
           </div>
         )}
         <footer className="text-center text-gray-500 text-sm mt-10">
