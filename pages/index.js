@@ -25,7 +25,7 @@ const Home = () => {
       if (nlpData.output === 'appropriate') {
         const res = await fetch(`/api/advice?prompt=${input}`);
         const data = await res.json();
-        console.log(`Received response: ${data.text}`);
+        console.log(`Received response: ${input}`);
         setAnswer(data.text);
       } else {
         setAnswer('We encourage you to ask a different question.');
