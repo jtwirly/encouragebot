@@ -15,7 +15,7 @@ const Home = () => {
   
     try {
       // Check if the input is appropriate using the moderation API route
-      const moderationRes = await fetch('/api/moderateMessage', {
+      const moderationRes = await fetch('/api/moderation', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: input }),

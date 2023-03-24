@@ -2,16 +2,20 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-}
-
-module.exports = {
   experimental: {
     esmExternals: true,
   },
-};
-
-module.exports = {
   env: {
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
   },
-};
+  async rewrites() {
+    return [
+      {
+        source: '/api/moderation',
+        destination: 'http://localhost:3001/api/moderation',
+      },
+    ]
+  },
+}  
+
+module.exports = nextConfig;
