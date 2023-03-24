@@ -1,38 +1,23 @@
-import { useState } from 'react';
+// api/moderation.js
+import { sendModerationsRequest } from '../../lib/moderation';
 
-export default async function handler(req, res) {
-  const { input } = req.body;
+export default async function moderation(req, res) {
+  const { message } = req.body;
 
+  // Use the sendModerationsRequest function to check if the message is appropriate:
   try {
-    const response = await fetch('https://api.openai.com/v1/engines/content-filter-alpha-2/inputs', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        prompts: [`Is the following text appropriate for a professional setting?`],
-        examples: [
-          [`This is a great product!`],
-          [`Your work is amazing.`],
-          [`I hate this so much.`],
-          [`You are terrible at your job.`],
-          [`I'm feeling really down today.`],
-        ],
-        query: input,
-        max_examples: 3,
-        search_model: 'ada',
-        model: 'content-filter-alpha-2',
-        temperature: 0,
-      }),
-    });
-    const data = await response.json();
+    const moderationData = await sendModerationsRequest(message);
 
-    res.status(200).json({
-      results: data.data,
-    });
+    if (moderationData.blocked !== '') {
+      return res.status(403).json({ message: 'We encourage you to ask a different question.' });
+    } else if (moderationData.flagged) {
+      return res.status(403).json({ message: 'We encourage you to ask a different question.' });
+    } else {
+      // If the message is appropriate, return the message to the client:
+      return res.status(200).json({ message });
+    }
   } catch (error) {
     console.error('Error in moderation:', error);
-    res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ message: 'Internal Server Error' });
   }
 }

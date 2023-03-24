@@ -25,7 +25,7 @@ const Home = () => {
       if (moderationData.blocked !== '') {
         setAnswer('We encourage you to ask a different question.');
       } else if (moderationData.flagged) {
-        setAnswer('We encourage you to ask a different question.');
+        setAnswer('Your input has been flagged as potentially inappropriate. Please ask a different question.');
       } else {
         const res = await fetch(`/api/advice?prompt=${input}`);
         const data = await res.json();
