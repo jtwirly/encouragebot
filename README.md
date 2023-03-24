@@ -1,4 +1,4 @@
-# encouragebot
+# EncourageBot
 AI-Powered Encouragement Project
 
 EncourageBot is an AI-powered encouragement application designed to provide positive affirmations and support to users. The chatbot uses GPT-3.5 to understand natural language inputs and generate personalized encouragement messages based on the user's needs.
